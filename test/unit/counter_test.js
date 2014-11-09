@@ -1,7 +1,8 @@
 'use strict';
 
 var expect = require('chai').expect;
-var Counter = require('../../lib/counter')('encapsulation');
+var important = 'inheritance'; // 'encapsulation'
+var Counter = require('../../lib/counter')(important);
 
 describe('Counter object tests', function() {
   var counter;
@@ -28,11 +29,19 @@ describe('Counter object tests', function() {
       expect(counter.getValue).to.be.a('function');
     });
 
-    it('should not have a number property exposed', function() {
-      for (var property in counter) {
-        expect(counter[property]).to.be.a('function');
-      }
-    });
+    if ('encapsulation' === important) {
+      it('should not have a number property exposed', function() {
+        for (var property in counter) {
+          expect(counter[property]).to.be.a('function');
+        }
+      });
+    }
+
+    if ('inheritance' === important) {
+      it('is an instance of Counter', function() {
+        expect(counter instanceof Counter).to.equal(true);
+      });
+    }
 
   });
 
