@@ -57,15 +57,12 @@ describe('Counter object tests', function() {
   describe('increment', function() {
 
     it('should increment the counter value', function() {
-      expect(counter.increment().getValue()).to.be.a('number');
-      expect(counter.getValue()).to.equal(1);
-      expect(counter.increment().getValue()).to.be.a('number');
-      expect(counter.getValue()).to.equal(2);
+      expect(counter.increment().getValue()).to.equal(1);
+      expect(counter.increment().getValue()).to.equal(2);
     });
 
     it('should hold distinct value in each instance', function() {
-      expect(counter.increment().getValue()).to.equal(1);
-      expect(counter.increment().getValue()).to.equal(2);
+      counter.increment().increment();
       expect(new Counter().increment().getValue()).to.equal(1);
       expect(counter.getValue()).to.equal(2);
     });
